@@ -768,34 +768,27 @@
             msgs.scrollTop = msgs.scrollHeight;
 
             try {
-                // local ai static mode if no key set
-                const MOCK_MODE_IF_NO_KEY = true;
-                
-                // Upgrade 1: Real AI OpenAI Call
-                const res = await fetch("https://api.openai.com/v1/chat/completions", {
+                // Secure AI Call to Local Backend
+                const res = await fetch("http://localhost:3000/api/chat", {
                     method: "POST",
                     headers: {
-                        "Authorization": "Bearer YOUR_API_KEY", // <--- INSERT YOUR REAL KEY HERE
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-                        model: "gpt-4o-mini",
-                        messages: [{ role: "system", content: "You are Muhammed Shahid's helpful assistant." }, { role: "user", content: msg }]
-                    })
+                    body: JSON.stringify({ message: msg })
                 });
 
                 if(res.ok) {
                     const data = await res.json();
-                    const bot_reply = data.choices[0].message.content;
+                    const bot_reply = data.reply || "No response received.";
                     document.getElementById(typingId).remove();
                     msgs.innerHTML += `<div class="bg-slate-800 border border-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">${bot_reply}</div><div class="clear-both"></div>`;
                 } else {
                     document.getElementById(typingId).remove();
-                    msgs.innerHTML += `<div class="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">API Key Missing! Inspect index.html to add it.</div><div class="clear-both"></div>`;
+                    msgs.innerHTML += `<div class="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">Server Error: Check backend console.</div><div class="clear-both"></div>`;
                 }
             } catch(e) { 
                 document.getElementById(typingId).remove();
-                msgs.innerHTML += `<div class="text-red-500 text-xs mt-2">Connection error.</div>`; 
+                msgs.innerHTML += `<div class="text-red-500 text-xs mt-2 bg-red-900/40 p-2 rounded">Backend connection failed. Did you run 'node server.js' inside the backend folder?</div>`; 
             }
             msgs.scrollTop = msgs.scrollHeight;
         }
