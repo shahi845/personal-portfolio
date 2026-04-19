@@ -719,15 +719,31 @@
                 if (res.ok) {
                     const posts = await res.json();
                     if (!posts || posts.length === 0) { container.innerHTML = '<p class="text-slate-500 col-span-full">No articles published yet.</p>'; return; }
-                    container.innerHTML = posts.map(post => `
-            <div class="glass glass-card p-6 rounded-2xl flex flex-col h-full border border-white/5 shadow-xl shadow-brand-500/5 group" data-aos="fade-up">
-              <div class="flex justify-between items-center mb-4">
-                <span class="text-accent-400 text-xs font-bold rounded-full bg-accent-500/10 px-3 py-1"><i class="far fa-calendar-alt"></i> ${post.timestamp}</span>
-              </div>
-              <h3 class="font-bold text-xl mb-3 group-hover:text-brand-400 transition">${post.title}</h3>
-              <p class="text-sm text-slate-400 flex-1 leading-relaxed">${post.content}</p>
-            </div>
-          `).join('');
+                    
+                    container.innerHTML = '';
+                    for (const post of posts) {
+                        let renderedContent = `<p class="text-sm text-slate-400 flex-1 leading-relaxed">${post.preview || post.content}</p>`;
+                        
+                        // MarkDown auto-rendering logic (Upgrade 2)
+                        if(post.file) {
+                            try {
+                                const mdRes = await fetch(post.file);
+                                if(mdRes.ok) {
+                                    const mdText = await mdRes.text();
+                                    renderedContent = `<div class="prose prose-sm prose-invert text-slate-400 max-w-none flex-1 leading-relaxed mt-2" style="font-size:0.875rem;">${marked.parse(mdText)}</div>`;
+                                }
+                            } catch(e) { console.error('Failed to load markdown', e); }
+                        }
+
+                        container.innerHTML += `
+                        <div class="glass glass-card p-6 rounded-2xl flex flex-col h-full border border-white/5 shadow-xl shadow-brand-500/5 group" data-aos="fade-up">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-accent-400 text-xs font-bold rounded-full bg-accent-500/10 px-3 py-1"><i class="far fa-calendar-alt"></i> ${post.timestamp}</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-1 group-hover:text-brand-400 transition">${post.title}</h3>
+                        ${renderedContent}
+                        </div>`;
+                    }
                 }
             } catch (err) { container.innerHTML = '<p class="text-red-500 col-span-full">Error loading blog posts.</p>'; }
         }
@@ -737,13 +753,13 @@
         document.getElementById('chatToggle').addEventListener('click', () => chatWindow.classList.toggle('hidden-chat'));
         document.getElementById('closeChatBtn').addEventListener('click', () => chatWindow.classList.add('hidden-chat'));
 
-        function sendChatMessage() {
+        async function sendChatMessage() {
             const input = document.getElementById('chatInput');
             const msgs = document.getElementById('chatMessages');
-            const msg = input.value.trim().toLowerCase();
+            const msg = input.value.trim();
             if (!msg) return;
 
-            msgs.innerHTML += `<div class="flex justify-end mb-4"><div class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-3 rounded-2xl rounded-tr-sm w-10/12 text-sm ml-auto shadow-md">${input.value}</div></div>`;
+            msgs.innerHTML += `<div class="flex justify-end mb-4"><div class="bg-gradient-to-r from-brand-600 to-brand-500 text-white p-3 rounded-2xl rounded-tr-sm w-10/12 text-sm ml-auto shadow-md">${msg}</div></div>`;
             input.value = '';
             msgs.scrollTop = msgs.scrollHeight;
 
@@ -751,21 +767,46 @@
             msgs.innerHTML += `<div id="${typingId}" class="bg-slate-800 border border-slate-700 text-slate-400 p-3 rounded-2xl rounded-tl-sm w-16 inline-block text-sm mb-4"><i class="fas fa-ellipsis-h animate-pulse"></i></div><div class="clear-both"></div>`;
             msgs.scrollTop = msgs.scrollHeight;
 
-            setTimeout(() => {
-                document.getElementById(typingId).remove();
-                let bot_reply = "I'm the static portfolio AI! I run entirely in your browser right now.";
-                if (msg.includes('resume') || msg.includes('skills')) bot_reply = "Muhammed has skills in UI/UX Design, Python, Javascript, AI tools, and Cybersecurity!";
-                else if (msg.includes('contact') || msg.includes('hire')) bot_reply = "You can contact Muhammed via the contact form above!";
-                else if (msg.includes('projects')) bot_reply = "He has built this very portfolio! Check out the projects section for more details.";
+            try {
+                // local ai static mode if no key set
+                const MOCK_MODE_IF_NO_KEY = true;
+                
+                // Upgrade 1: Real AI OpenAI Call
+                const res = await fetch("https://api.openai.com/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer YOUR_API_KEY", // <--- INSERT YOUR REAL KEY HERE
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-mini",
+                        messages: [{ role: "system", content: "You are Muhammed Shahid's helpful assistant." }, { role: "user", content: msg }]
+                    })
+                });
 
-                msgs.innerHTML += `<div class="bg-slate-800 border border-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">${bot_reply}</div><div class="clear-both"></div>`;
-                msgs.scrollTop = msgs.scrollHeight;
-            }, 1000);
+                if(res.ok) {
+                    const data = await res.json();
+                    const bot_reply = data.choices[0].message.content;
+                    document.getElementById(typingId).remove();
+                    msgs.innerHTML += `<div class="bg-slate-800 border border-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">${bot_reply}</div><div class="clear-both"></div>`;
+                } else {
+                    document.getElementById(typingId).remove();
+                    msgs.innerHTML += `<div class="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">API Key Missing! Inspect index.html to add it.</div><div class="clear-both"></div>`;
+                }
+            } catch(e) { 
+                document.getElementById(typingId).remove();
+                msgs.innerHTML += `<div class="text-red-500 text-xs mt-2">Connection error.</div>`; 
+            }
+            msgs.scrollTop = msgs.scrollHeight;
         }
 
         document.getElementById('sendMessageBtn').addEventListener('click', sendChatMessage);
         document.getElementById('chatInput').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendChatMessage(); });
 
+        // Upgrade 6: PWA Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js'); });
+        }
     </script>
 </body>
 
