@@ -1,0 +1,1 @@
+$content = Get-Content -Path "frontend\index.html" -Raw; $content = $content -replace "(?s)<script src=`"https://unpkg.com/aos.*?`n    </script>", "<script defer src=`"js/main.js`"></script>`n    <script defer src=`"js/github.js`"></script>`n    <script defer src=`"js/chat.js`"></script>"; Set-Content -Path "frontend\index.html" -Value $content

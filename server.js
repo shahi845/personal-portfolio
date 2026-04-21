@@ -4,33 +4,54 @@ import dotenv from "dotenv";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 
+import xss from "xss";
+
 dotenv.config();
 
 const app = express();
 
 // 🔐 Middleware
-app.use(cors());
+app.use(cors({
+    origin: ["https://your-portfolio-domain.com", "http://localhost:3000"]
+}));
 app.use(express.json());
 
 // 🛡️ Security headers
 app.use(helmet());
 
-// 🐢 Rate limiting (100 requests per 15 minutes)
+// 🐢 Rate limiting (50 requests per 15 minutes)
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000,
-    max: 100
+    max: 50
 }));
 
 // 🔒 AI Route
 app.post("/api/chat", async (req, res) => {
     try {
-        const { message } = req.body;
+        const { message, history = [] } = req.body;
 
         if (!message) {
             return res.status(400).json({ error: "Message required" });
         }
 
+        if (message.length > 500) {
+            return res.status(400).json({ error: "Message too long" });
+        }
+
+        const cleanMessage = xss(message);
+
         console.log("Receiving request for AI API...");
+
+        const systemPrompt = {
+            role: "system",
+            content: `You are Muhammed Shahid's professional AI assistant. Only answer questions about his portfolio, skills, and projects. Reject unrelated queries.`
+        };
+
+        const apiMessages = [
+            systemPrompt,
+            ...history,
+            { role: "user", content: cleanMessage }
+        ];
 
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
             method: "POST",
@@ -40,10 +61,7 @@ app.post("/api/chat", async (req, res) => {
             },
             body: JSON.stringify({
                 model: "gpt-4o-mini",
-                messages: [
-                    { role: "system", content: "You are Muhammed Shahid's AI assistant." },
-                    { role: "user", content: message }
-                ]
+                messages: apiMessages
             })
         });
 
