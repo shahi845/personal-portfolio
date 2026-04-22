@@ -5,5 +5,19 @@
     "title": "Building an Elite Portfolio with Markdown",
     "file": "posts/1.md",
     "preview": "This is a markdown-powered blog! By writing native .md files, I can include powerful formatting, code snippets, and structure natively."
+  },
+  {
+    "id": "2",
+    "timestamp": "April 20, 2026",
+    "title": "My Journey into Backend Development",
+    "file": "posts/2.md",
+    "preview": "Transitioning from pure frontend to a full-stack mindset. Here's what I learned about Node.js, APIs, and connecting systems."
+  },
+  {
+    "id": "3",
+    "timestamp": "April 21, 2026",
+    "title": "Mastering the Fundamentals: HTML, CSS, JavaScript",
+    "file": "posts/3.md",
+    "preview": "Before jumping into frameworks, it's crucial to understand the building blocks of the web. Here is how I approached learning the basics."
   }
 ]
