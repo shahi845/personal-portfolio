@@ -7,8 +7,8 @@
     <title>Muhammed Shahid</title>
 
     <meta name="description"
-        content="Portfolio of Muhammed Shahid, an aspiring IT Professional and Web Developer focusing on AI and Cybersecurity.">
-    <meta name="keywords" content="Muhammed Shahid, Portfolio, Web Developer, AI Enthusiast, Cybersecurity">
+        content="Portfolio of Muhammed Shahid, an aspiring Full Stack Web Developer focusing on modern frontend frameworks, Node.js backend integrations, AI chatbot development, and Cybersecurity. View my skills, projects, and learning journey.">
+    <meta name="keywords" content="Muhammed Shahid, Portfolio, Web Developer, Full Stack Developer, AI Enthusiast, Cybersecurity, Node.js, JavaScript, HTML, CSS, React">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -184,7 +184,23 @@
                         <i class="fas fa-moon dark:hidden text-slate-800"></i>
                         <i class="fas fa-sun hidden dark:block text-yellow-300"></i>
                     </button>
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-slate-800 dark:text-slate-200 hover:text-brand-500 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-50/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 absolute w-full left-0">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center dropdown-links">
+                <a href="#about" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#skills" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#blog" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium text-brand-400">Blog</a>
+                <a href="#education" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium">Education</a>
+                <a href="#contact" class="block hover:text-brand-400 px-3 py-2 rounded-md text-base font-medium">Contact</a>
             </div>
         </div>
     </nav>
@@ -261,7 +277,7 @@
                     <span class="px-3 py-1 glass rounded-full text-sm font-medium text-brand-500"><i
                             class="fas fa-map-marker-alt"></i> Kasaragod, Kerala, India</span>
                     <span class="px-3 py-1 glass rounded-full text-sm font-medium text-accent-500"><i
-                            class="fas fa-language"></i> English, Malayalam, Urdu, Arabic, German (A1)</span>
+                            class="fas fa-language"></i> English, Malayalam, Urdu, Arabic, Hindi, German (A1)</span>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4" data-aos="fade-left">
@@ -336,11 +352,21 @@
                                 <div class="bg-brand-500 h-2 rounded-full" style="width: 39%"></div>
                             </div>
                         </div>
-                        <div
-                            class="pt-2 flex flex-wrap gap-2 text-xs font-mono text-slate-500 dark:text-slate-400 mt-2">
-                            <span class="glass px-2 py-1 rounded">MS Office (Excel)</span>
-                            <span class="glass px-2 py-1 rounded">Computer Reparations</span>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-medium">Data
+                                    Entry</span><span>90%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                <div class="bg-brand-500 h-2 rounded-full" style="width: 90%"></div>
+                            </div>
                         </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-medium">Computer
+                                    Reparations</span><span>45%</span></div>
+                            <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                                <div class="bg-brand-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- Design -->
@@ -373,7 +399,7 @@
                         <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Self-Learning Ability</span>
                         <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Mathematics</span>
                         <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Speech</span>
-                        <span class="px-4 py-2 glass rounded-lg text-sm font-medium">Using AI for all</span>
+                        <span class="px-4 py-2 glass rounded-lg text-sm font-medium">AI skills</span>
                     </div>
                 </div>
             </div>
@@ -384,26 +410,60 @@
     <section id="projects" class="py-20 px-4 max-w-6xl mx-auto">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-center" data-aos="fade-down"><i
                 class="fas fa-rocket text-brand-500 mr-2"></i>Highlighted Projects</h2>
-        <p class="text-center text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto">A collection of my
-            hand-crafted projects and tools.</p>
+        <p class="text-center text-slate-500 dark:text-slate-400 mb-8 max-w-2xl mx-auto">A collection of my hand-crafted projects and tools.</p>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <!-- Project Filters -->
+        <div class="flex justify-center flex-wrap gap-3 mb-10" data-aos="zoom-in">
+            <button class="filter-btn active px-4 py-2 rounded-full glass font-bold text-sm text-brand-500 border border-brand-500 shadow-[0_0_10px_rgba(59,130,246,0.3)] transition" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-full glass font-medium text-sm text-slate-500 hover:text-brand-400 transition" data-filter="frontend">Frontend</button>
+            <button class="filter-btn px-4 py-2 rounded-full glass font-medium text-sm text-slate-500 hover:text-brand-400 transition" data-filter="backend">Backend & AI</button>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16" id="projects-grid">
 
             <!-- Project 1 -->
-            <div class="glass glass-card p-6 rounded-2xl flex flex-col h-full" data-aos="fade-up">
-                <h3 class="font-bold text-xl mb-2 text-brand-400">1. Personal Portfolio Website</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex-1">A modern personal portfolio website
-                    showcasing my skills, projects, and achievements. Features responsive design, smooth animations, and
-                    clean UI.</p>
-                <div class="flex flex-wrap gap-2 mb-4 text-xs font-mono text-slate-400">
-                    <span class="bg-slate-800 px-2 py-1 rounded">HTML</span>
-                    <span class="bg-slate-800 px-2 py-1 rounded">CSS</span>
-                    <span class="bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+            <div class="project-card frontend glass glass-card rounded-2xl flex flex-col h-full overflow-hidden transition-all duration-300" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=400&q=80" alt="Portfolio" class="w-full h-48 object-cover" loading="lazy">
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-bold text-xl mb-2 text-brand-400">1. Elite Portfolio</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex-1">A modern personal portfolio showcasing skills with highly responsive design, glassmorphism, and dynamic animations.</p>
+                    <div class="flex flex-wrap gap-2 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">HTML/CSS</span>
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Tailwind</span>
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">JS</span>
+                    </div>
+                    <a href="https://github.com/shahi845" target="_blank" class="text-sm font-bold text-brand-500 hover:underline mt-auto"><i class="fab fa-github"></i> View Project</a>
                 </div>
-                <a href="https://github.com/shahi845" target="_blank" class="text-sm text-brand-500 hover:underline"><i
-                        class="fab fa-github"></i> View App</a>
             </div>
 
+            <!-- Project 2 -->
+            <div class="project-card frontend glass glass-card rounded-2xl flex flex-col h-full overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=400&q=80" alt="Calculator" class="w-full h-48 object-cover opacity-90" loading="lazy">
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-bold text-xl mb-2 text-brand-400">2. Advanced Web Calculator</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex-1">A highly robust web calculator executing detailed algebraic sequences and DOM transformations flawlessly.</p>
+                    <div class="flex flex-wrap gap-2 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">JavaScript</span>
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Algorithms</span>
+                    </div>
+                    <a href="https://github.com/shahi845" target="_blank" class="text-sm font-bold text-brand-500 hover:underline mt-auto"><i class="fab fa-github"></i> View Project</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card backend glass glass-card rounded-2xl flex flex-col h-full overflow-hidden transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80" alt="AI Bot" class="w-full h-48 object-cover opacity-90" loading="lazy">
+                <div class="p-6 flex flex-col flex-1">
+                    <h3 class="font-bold text-xl mb-2 text-brand-400">3. Backend Chatbot AI</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4 flex-1">A secure custom Node.js Express server to handle intelligent generative AI API fetching and response rendering.</p>
+                    <div class="flex flex-wrap gap-2 mb-4 text-xs font-mono text-slate-600 dark:text-slate-400">
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Node.js</span>
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">Express</span>
+                        <span class="bg-slate-200 dark:bg-slate-800 px-2 py-1 rounded">AI API</span>
+                    </div>
+                    <a href="https://github.com/shahi845" target="_blank" class="text-sm font-bold text-brand-500 hover:underline mt-auto"><i class="fab fa-github"></i> View Project</a>
+                </div>
+            </div>
 
         </div>
 
@@ -446,7 +506,7 @@
                         <div
                             class="absolute left-[-39px] top-4 w-5 h-5 rounded-full bg-brand-500 border-4 border-slate-900 z-10">
                         </div>
-                        <span class="text-sm font-bold text-brand-500">Plus Two Commerce</span>
+                        <span class="text-sm font-bold text-brand-500">Hudawi Course</span>
                         <h3 class="text-xl font-bold mt-1">Malik Deenar Islamic Academy</h3>
                         <p class="text-slate-500 text-sm mt-1">Affiliated with Darul Huda Islamic University</p>
                         <p class="mt-3 text-slate-600 dark:text-slate-300">Kerala, India</p>
@@ -501,6 +561,18 @@
     </section>
 
 
+    <!-- ================= 12. NEWSLETTER ================= -->
+    <section id="newsletter" class="py-20 max-w-4xl mx-auto px-4 text-center">
+        <div class="glass p-10 rounded-3xl" data-aos="zoom-in">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-slate-500 mb-8 max-w-md mx-auto">Join my newsletter to get the latest updates on my projects, tech tutorials, and cybersecurity findings.</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center" aria-label="Newsletter">
+                <input type="email" placeholder="Enter your email address" required class="px-6 py-3 rounded-full w-full sm:w-96 glass bg-transparent outline-none focus:border-brand-500 transition border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200">
+                <button type="submit" class="px-8 py-3 rounded-full bg-gradient-to-r from-brand-600 to-accent-600 text-white font-bold hover:shadow-lg transition transform hover:-translate-y-1" onclick="arguments[0].preventDefault(); alert('Subscribed gracefully! (Backend logic pending)');">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
     <!-- ================= 13. CONTACT SECTION ================= -->
     <section id="contact" class="py-20 px-4 bg-slate-900/5 dark:bg-black/20">
         <div class="max-w-6xl mx-auto glass rounded-3xl p-8 md:p-12" data-aos="zoom-in">
@@ -512,30 +584,65 @@
                         <div class="flex items-center gap-4">
                             <div
                                 class="w-12 h-12 glass rounded-full flex items-center justify-center text-brand-500 text-xl">
-                                <i class="fas fa-envelope"></i></div>
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <div>
                                 <p class="text-sm text-slate-500">Mail me at</p><a href="mailto:mshahid3845@gmail.com"
-                                    class="font-bold hover:text-brand-500 transition">mshahid3845@gmail.com</a>
+                                    class="font-bold hover:text-brand-500 transition">Mail Me</a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div
                                 class="w-12 h-12 glass rounded-full flex items-center justify-center text-accent-500 text-xl">
-                                <i class="fas fa-phone-alt"></i></div>
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
                             <div>
                                 <p class="text-sm text-slate-500">Call me at</p><a href="tel:+919207402520"
-                                    class="font-bold hover:text-accent-500 transition">+91 9207402520</a>
+                                    class="font-bold hover:text-accent-500 transition">Call</a>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <div
                                 class="w-12 h-12 glass rounded-full flex items-center justify-center text-blue-500 text-xl">
-                                <i class="fab fa-linkedin"></i></div>
+                                <i class="fab fa-linkedin"></i>
+                            </div>
                             <div>
                                 <p class="text-sm text-slate-500">Connect</p><a
                                     href="https://www.linkedin.com/in/muhammed-shahid-559626395/"
-                                    class="font-bold hover:text-blue-500 transition" target="_blank">LinkedIn
-                                    Profile</a>
+                                    class="font-bold hover:text-blue-500 transition" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 glass rounded-full flex items-center justify-center text-blue-500 text-xl">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">GitHub</p><a
+                                    href="https://github.com/shahi845"
+                                    class="font-bold hover:text-blue-500 transition" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 glass rounded-full flex items-center justify-center text-pink-500 text-xl">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">Instagram</p><a
+                                    href="https://www.instagram.com/_shahid_4"
+                                    class="font-bold hover:text-pink-500 transition" target="_blank">Instagram</a>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 glass rounded-full flex items-center justify-center text-green-500 text-xl">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-slate-500">WhatsApp</p><a
+                                    href="https://wa.me/919207402520?text=Hi%20Muhammed!"
+                                    class="font-bold hover:text-green-500 transition" target="_blank">WhatsApp</a>
                             </div>
                         </div>
                     </div>
@@ -580,16 +687,16 @@
                 <button id="closeChatBtn" class="hover:text-slate-200 transition"><i
                         class="fas fa-times text-lg"></i></button>
             </div>
-            <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-900/90 backdrop-blur-xl">
+            <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-xl">
                 <div
-                    class="bg-slate-800 border border-slate-700 text-slate-200 p-4 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md">
+                    class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 p-4 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md">
                     Hello! I'm Muhammed's AI Assistant. I can answer questions about his workflow, projects, and skills.
                     How can I help you today?
                 </div>
             </div>
-            <div class="p-3 bg-slate-900 border-t border-slate-700/50 flex gap-2">
+            <div class="p-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700/50 flex gap-2">
                 <input type="text" id="chatInput" placeholder="Ask me anything..."
-                    class="flex-1 bg-slate-800/80 px-4 py-3 rounded-xl outline-none focus:bg-slate-800 focus:ring-1 focus:ring-brand-500 border border-slate-700 text-sm transition">
+                    class="flex-1 bg-slate-100 dark:bg-slate-800/80 px-4 py-3 rounded-xl outline-none focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-brand-500 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white text-sm transition">
                 <button id="sendMessageBtn"
                     class="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-600 text-white rounded-xl flex items-center justify-center hover:scale-105 transition"><i
                         class="fas fa-paper-plane text-sm"></i></button>
@@ -597,7 +704,7 @@
         </div>
     </div>
 
-    <footer class="py-8 bg-black/50 border-t border-slate-800 text-center text-slate-500 text-sm mt-10">
+    <footer class="py-8 bg-slate-900/5 dark:bg-black/50 border-t border-black/5 dark:border-slate-800 text-center text-slate-500 text-sm mt-10">
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <p>&copy; 2026 Muhammed Shahid. All Rights Reserved.</p>
             <div class="flex gap-4 text-lg">
@@ -605,6 +712,12 @@
                         class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/muhammed-shahid-559626395/"
                     class="hover:text-brand-500 transition"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/muhammed_shahid_845/" class="hover:text-brand-500 transition"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/919744572245" class="hover:text-brand-500 transition"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="https://t.me/shahi845" class="hover:text-brand-500 transition"><i
+                        class="fab fa-telegram"></i></a>
             </div>
         </div>
     </footer>
@@ -616,15 +729,15 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                nav.classList.add('shadow-lg', 'bg-slate-900/80', 'dark:bg-slate-900/80', 'backdrop-blur-md'); nav.classList.remove('glass');
+                nav.classList.add('shadow-lg', 'bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-md'); nav.classList.remove('glass');
             } else {
-                nav.classList.remove('shadow-lg', 'bg-slate-900/80', 'dark:bg-slate-900/80', 'backdrop-blur-md'); nav.classList.add('glass');
+                nav.classList.remove('shadow-lg', 'bg-white/80', 'dark:bg-slate-900/80', 'backdrop-blur-md'); nav.classList.add('glass');
             }
         });
 
         document.getElementById('theme-toggle').addEventListener('click', () => { document.documentElement.classList.toggle('dark'); });
 
-        const words = ["Web Developer", "AI Enthusiast", "Cybersecurity Learner"];
+        const words = ["Web Developer", "AI Enthusiast", "Cybersecurity Learner", "Data Management"];
         let i = 0, j = 0, isDeleting = false;
         function typeEffect() {
             const currentWord = words[i], typedText = document.getElementById("typed-text");
@@ -666,7 +779,7 @@
             const container = document.getElementById('particles-js');
             for (let i = 0; i < 30; i++) {
                 const p = document.createElement('div');
-                p.style.cssText = `position:absolute; width:${Math.random() * 4 + 2}px; height:${Math.random() * 4 + 2}px; background:white; border-radius:50%; top:${Math.random() * 100}%; left:${Math.random() * 100}%; opacity:${Math.random() * 0.4 + 0.1}; animation:float ${Math.random() * 10 + 10}s linear infinite;`;
+                p.style.cssText = `position:absolute; width:${Math.random() * 4 + 2}px; height:${Math.random() * 4 + 2}px; background:#64748b; border-radius:50%; top:${Math.random() * 100}%; left:${Math.random() * 100}%; opacity:${Math.random() * 0.4 + 0.1}; animation:float ${Math.random() * 10 + 10}s linear infinite;`;
                 container.appendChild(p);
             }
         }
@@ -719,20 +832,20 @@
                 if (res.ok) {
                     const posts = await res.json();
                     if (!posts || posts.length === 0) { container.innerHTML = '<p class="text-slate-500 col-span-full">No articles published yet.</p>'; return; }
-                    
+
                     container.innerHTML = '';
                     for (const post of posts) {
                         let renderedContent = `<p class="text-sm text-slate-400 flex-1 leading-relaxed">${post.preview || post.content}</p>`;
-                        
+
                         // MarkDown auto-rendering logic (Upgrade 2)
-                        if(post.file) {
+                        if (post.file) {
                             try {
                                 const mdRes = await fetch(post.file);
-                                if(mdRes.ok) {
+                                if (mdRes.ok) {
                                     const mdText = await mdRes.text();
-                                    renderedContent = `<div class="prose prose-sm prose-invert text-slate-400 max-w-none flex-1 leading-relaxed mt-2" style="font-size:0.875rem;">${marked.parse(mdText)}</div>`;
+                                    renderedContent = `<div class="prose prose-sm dark:prose-invert text-slate-600 dark:text-slate-400 max-w-none flex-1 leading-relaxed mt-2" style="font-size:0.875rem;">${marked.parse(mdText)}</div>`;
                                 }
-                            } catch(e) { console.error('Failed to load markdown', e); }
+                            } catch (e) { console.error('Failed to load markdown', e); }
                         }
 
                         container.innerHTML += `
@@ -764,7 +877,7 @@
             msgs.scrollTop = msgs.scrollHeight;
 
             const typingId = 't-' + Date.now();
-            msgs.innerHTML += `<div id="${typingId}" class="bg-slate-800 border border-slate-700 text-slate-400 p-3 rounded-2xl rounded-tl-sm w-16 inline-block text-sm mb-4"><i class="fas fa-ellipsis-h animate-pulse"></i></div><div class="clear-both"></div>`;
+            msgs.innerHTML += `<div id="${typingId}" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 p-3 rounded-2xl rounded-tl-sm w-16 inline-block text-sm mb-4"><i class="fas fa-ellipsis-h animate-pulse"></i></div><div class="clear-both"></div>`;
             msgs.scrollTop = msgs.scrollHeight;
 
             try {
@@ -781,14 +894,14 @@
                     const data = await res.json();
                     const bot_reply = data.reply || "No response received.";
                     document.getElementById(typingId).remove();
-                    msgs.innerHTML += `<div class="bg-slate-800 border border-slate-700 text-slate-200 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">${bot_reply}</div><div class="clear-both"></div>`;
+                    msgs.innerHTML += `<div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">${bot_reply}</div><div class="clear-both"></div>`;
                 } else {
                     document.getElementById(typingId).remove();
                     msgs.innerHTML += `<div class="bg-red-500/10 border border-red-500/20 text-red-400 p-3 rounded-2xl rounded-tl-sm w-11/12 text-sm shadow-md mb-4">Server Error: Check backend console.</div><div class="clear-both"></div>`;
                 }
-            } catch(e) { 
+            } catch (e) {
                 document.getElementById(typingId).remove();
-                msgs.innerHTML += `<div class="text-red-500 text-xs mt-2 bg-red-900/40 p-2 rounded">Backend connection failed. Did you run 'node server.js' inside the backend folder?</div>`; 
+                msgs.innerHTML += `<div class="text-red-500 text-xs mt-2 bg-red-900/40 p-2 rounded">Backend connection failed. Did you run 'node server.js' inside the backend folder?</div>`;
             }
             msgs.scrollTop = msgs.scrollHeight;
         }
