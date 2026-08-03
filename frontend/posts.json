@@ -1,0 +1,20 @@
+[
+    {
+        "title": "How I Built My AI Portfolio Assistant",
+        "timestamp": "April 2026",
+        "preview": "A deep dive into integrating a custom Node.js Express proxy server to securely communicate with the Gemini API, complete with rate limiting, sanitization, and a seamless frontend integration.",
+        "file": ""
+    },
+    {
+        "title": "Lessons From Building My Inheritance Calculator",
+        "timestamp": "March 2026",
+        "preview": "Translating 60+ classical rules of Islamic Inheritance into a strict software architecture. This post explores the challenges of mathematical edge cases, precision fractions, and UI design.",
+        "file": ""
+    },
+    {
+        "title": "Beginner’s Journey Into Cybersecurity",
+        "timestamp": "February 2026",
+        "preview": "As I expand my full-stack capabilities, I've started exploring server security, XSS prevention, and robust authentication mechanisms. Here is what I learned in the first 30 days.",
+        "file": ""
+    }
+]
